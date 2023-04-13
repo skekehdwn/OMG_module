@@ -19,7 +19,7 @@ def plug_in(data, inputPlugin, dataType, columnsType) :
                     DFC = ['computer_id', 'listenPortCountChange','establishedPortCountChange', 'online']
                 elif columnsType == 'normal':
                     DFC = ['computer_id', 'computer_name', 'ipv_address', 'chassis_type', 'os_platform', 'operating_system', 'is_virtual', 'last_reboot', 'tanium_client_subnet', 'manufacturer',
-                            'nvidia_smi', 'ram_use_size', 'ram_total_size', 'cup_details_cup_speed', 'disk_used_space', 'disk_total_space']
+                            'nvidia_smi', 'ram_use_size', 'ram_total_size', 'cup_details_cup_speed', 'disk_used_space', 'disk_total_space', 'wire']
                 elif columnsType == 'count':
                     DFC = ['computer_id', 'running_service_count', 'session_ip_count']
 
@@ -72,7 +72,8 @@ def plug_in(data, inputPlugin, dataType, columnsType) :
                         CDS = d[13]
                         DSZ = d[14][0]
                         DTS = d[15][0]
-                        DFL.append([CID, CNM, IP, CT, OSP, OS, IV, LR, TCS, MF, NS, RSZ, RTZ, CDS, DSZ, DTS])
+                        WIRE = d[16]
+                        DFL.append([CID, CNM, IP, CT, OSP, OS, IV, LR, TCS, MF, NS, RSZ, RTZ, CDS, DSZ, DTS, WIRE])
 
                     elif columnsType == 'count':
                         RSC = d[1]

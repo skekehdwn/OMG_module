@@ -26,7 +26,7 @@ def plug_in(data, inputPlugin) :
             'open_share_details_type', 'open_share_details_permissions', 'primary_owner_name', 'uptime',
             'usb_write_protected', 'user_accounts', 'ad_query_last_logged_in_user_date',
             'ad_query_last_logged_in_user_name', 'ad_query_last_logged_in_user_time',
-            'tanium_client_subnet','manufacturer', 'sessionIp', 'nvidiaSmi', 'online'
+            'tanium_client_subnet','manufacturer', 'sessionIp', 'nvidiaSmi', 'online', 'wire'
         ]
         if PROGRESS == 'true' :
             DATA_list = tqdm(enumerate(data),
@@ -147,6 +147,7 @@ def plug_in(data, inputPlugin) :
                 for NS in d[56] :
                     nvidiaSmi.append(NS['text'])
                 OL = d[57][0]['text']
+                WIRE = d[58][0]['text']
 
 
             if inputPlugin == 'DB':
@@ -208,12 +209,13 @@ def plug_in(data, inputPlugin) :
                 SI = d[55]
                 nvidiaSmi = d[56]
                 OL = d[57]
+                WIRE = d[58]
 
             DFL.append(
                 [CI, CN, LR, DTS, DUS, OP, OS, IV, CT, IP, LPC, EPC, RUS, RTS, IA, IAV, IASUS, IAU, RP, RS, CPUC,
                     CPUDST, CPUDCPU, CPUDCPUS, CPUDTPP, CPUDTC, CPUDTLP, DFS, HCPUP, HMP, HU, IPA, TCNATIPA, LLIU,
                     LPP, LPN, LPLP, LSC, MACA, MC, openPort, OSDN, OSDPath, OSDS, OSDT, OSDP, PON, Uptime, USBWP,
-                    UA, ADQLLIUD, ADQLLIUN, ADQLLIUT, TCS, manufacturer, SI, nvidiaSmi, OL])
+                    UA, ADQLLIUD, ADQLLIUN, ADQLLIUT, TCS, manufacturer, SI, nvidiaSmi, OL, WIRE])
         
         DF = pd.DataFrame(DFL, columns=DFC)
         logger.info('Asset/All.py -  ' + inputPlugin + ' 성공')

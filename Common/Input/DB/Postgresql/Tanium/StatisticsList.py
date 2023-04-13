@@ -49,6 +49,7 @@ def plug_in(dataType) :
                     cup_details_cup_speed,
                     disk_used_space,
                     disk_total_space,
+                    wire,
                     asset_list_statistics_collection_date
                 from  
                     """ + MSLT + """

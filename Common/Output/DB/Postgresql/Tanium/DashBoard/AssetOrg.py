@@ -46,14 +46,14 @@ def plug_in(data, cycle) :
                     open_share_details_permissions, primary_owner_name, uptime, usb_write_protected, user_accounts, 
                     ad_query_last_logged_in_user_date, ad_query_last_logged_in_user_name, 
                     ad_query_last_logged_in_user_time, tanium_client_subnet, manufacturer, session_ip,
-                    nvidia_smi, online, asset_collection_date
+                    nvidia_smi, online, wire, asset_collection_date
                 ) VALUES (
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-                    %s, %s, %s, %s, %s, %s, %s, %s,'""" + insertDate + """'
+                    %s, %s, %s, %s, %s, %s, %s, %s, %s, '""" + insertDate + """'
                 )
                 ON CONFLICT (computer_id)
                 DO UPDATE SET
@@ -114,6 +114,7 @@ def plug_in(data, cycle) :
                     session_ip = excluded.session_ip,
                     nvidia_smi = excluded.nvidia_smi, 
                     online = excluded.online,
+                    wire = excluded.wire,
                     asset_collection_date = '""" + insertDate + """'                                                                
             """
             #print(insertDate)
@@ -135,14 +136,14 @@ def plug_in(data, cycle) :
                     open_share_details_permissions, primary_owner_name, uptime, usb_write_protected, user_accounts, 
                     ad_query_last_logged_in_user_date, ad_query_last_logged_in_user_name, 
                     ad_query_last_logged_in_user_time, tanium_client_subnet, manufacturer, session_ip,
-                    nvidia_smi, online, asset_collection_date
+                    nvidia_smi, online, wire, asset_collection_date
                 ) VALUES (
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-                    %s, %s, %s, %s, %s, %s, %s, %s, '""" + insertDate + """')"""
+                    %s, %s, %s, %s, %s, %s, %s, %s, %s, '""" + insertDate + """')"""
         datalen = len(data.computer_id)
         
         if PROGRESS == 'true' :
@@ -211,10 +212,11 @@ def plug_in(data, cycle) :
             SI = data.sessionIp[i]
             NS = data.nvidiaSmi[i]
             OL = data.online[i]
+            WIRE = data.wire[i]
             dataList = CI, CN, LR, DTS, DUS, OP, OS, IV, CT, IP, LPC, EPC, RUS, RTS, IA, IAV, IASUS, IAU, RP, RS, CPUC, \
                        CPUDST, CPUDCPU, CPUDCPUS, CPUDTPP, CPUDTC, CPUDTLP, DFS, HCPUP, HMP, HU, IPA, TCNATIPA, LLIU, \
                        LPP, LPN, LPLP, LSC, MACA, MC, openPort, OSDN, OSDPath, OSDS, OSDT, OSDP, PON, Uptime, USBWP, \
-                       UA, ADQLLIUD, ADQLLIUN, ADQLLIUT, TCS, manufacturer, SI, NS, OL
+                       UA, ADQLLIUD, ADQLLIUN, ADQLLIUT, TCS, manufacturer, SI, NS, OL, WIRE
             insertCur.execute(IQ, (dataList))
         insertConn.commit()
         insertConn.close()

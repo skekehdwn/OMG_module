@@ -137,8 +137,9 @@ def minutely_plug_in():                                                         
         RSGBS = CASGBCPI(MADFTS, 'running_service', 'RSNM')                                 # Running Service Group By Statistics (Running Service 통계)
         SIPGBS = CASGBCPI(MADFTS, 'session_ip', 'SIP')                                      # Session_Ip Group By Statistics (Session_ip 통계)
         ONAGBC = CASGBCPI(IPMALSDDFT, 'online_asset','')                                    # 서버전체수량 Statistic Table 적재
+        WIREGBC = CASGBCPI(IPMALSDDFT, 'wire', 'WIRE')
 
-        MSTD = OSGBS + OSVGBS + IVGBS + CTGBS + LPCGBS + EPCGBS + IAGBS + RSGBS + LRBGBS + DUSGBS + RUSGBS + CPUGBS + GRUGBS + GCUGBS + GLPCGBS + GEPCGBS + GRSCGBS + GRPLRGBS + GDUSGBS + GLOTGBS + GSCGBS + ONGBS + MFGBS + GPUCGBS + SIPGBS + ONAGBC # Minutely Statistics Total Data (minutely_statistics Table에 넣을 모든 통계데이터)
+        MSTD = OSGBS + OSVGBS + IVGBS + CTGBS + LPCGBS + EPCGBS + IAGBS + RSGBS + LRBGBS + DUSGBS + RUSGBS + CPUGBS + GRUGBS + GCUGBS + GLPCGBS + GEPCGBS + GRSCGBS + GRPLRGBS + GDUSGBS + GLOTGBS + GSCGBS + ONGBS + MFGBS + GPUCGBS + SIPGBS + ONAGBC + WIREGBC # Minutely Statistics Total Data (minutely_statistics Table에 넣을 모든 통계데이터)
         SDDFT = CTDSAPI(MSTD, 'DB', 'minutely_statistics')                                  # Statistics Data Data Frame Transform (Statistics 데이터를 Data Frame 형태로 변형)
 
         if STMOPODBPU == 'true':                                                            # (통계 Data MINUTELY Output plug in postgresql DB 사용 여부 확인 - 사용함.)

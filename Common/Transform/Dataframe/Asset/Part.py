@@ -20,7 +20,7 @@ def plug_in(data, inputPlugin, dataType) :
                        'today_established_port_count', 'yesterday_established_port_count',
                        'ram_use_size', 'ram_total_size', 'installed_applications_name',
                        'running_service', 'cup_consumption', 'online', 'tanium_client_subnet', 'manufacturer',
-                       'session_ip', 'nvidia_smi', 'cup_details_cup_speed']
+                       'session_ip', 'nvidia_smi', 'cup_details_cup_speed','wire']
             DFL = []
 
             if PROGRESS == 'true' :
@@ -65,7 +65,8 @@ def plug_in(data, inputPlugin, dataType) :
                     SIP = d[22]
                     NS = d[23]
                     CDS = d[24]
-                    DFL.append([CID, CNM, LR, DTS, DUS, OSP, OS, IV, CT, IP, TLPC, YLPC, TEPC, YEPC, RUS, RTS, IAN, RS, CC, OL, TCS, MF, SIP, NS, CDS])
+                    WIRE = d[25]
+                    DFL.append([CID, CNM, LR, DTS, DUS, OSP, OS, IV, CT, IP, TLPC, YLPC, TEPC, YEPC, RUS, RTS, IAN, RS, CC, OL, TCS, MF, SIP, NS, CDS, WIRE])
 
         DF = pd.DataFrame(DFL, columns=DFC)
         logger.info('Asset/Part.py -  ' + inputPlugin+'/'+dataType+ ' 성공')

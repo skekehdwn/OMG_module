@@ -342,8 +342,12 @@ def plug_in(data, dataType):
 
                     NS = [NS_count, str(NS_item)]
 
+                if not data['wire'][c].startswith('[current') and not data['wire'][c].startswith('TSE-Error') and not data['wire'][c].startswith('Unknown') and not data['wire'][c].startswith('[hash') and not data['wire'][c].startswith('[no result'):
+                    WIRE = data['wire'][c].split(' ')[0]
+                else:
+                    WIRE = 'unconfirmed'
 
-                DL.append([CID, CNM, LR, DTS, DUS, OP, OS, IV, CT, IPV, LPC, YLPC, EPC, YEPC, RUS, RTS, IANM, RS, CPUC, OL, TCS, MF, SIP, NS, CDS])
+                DL.append([CID, CNM, LR, DTS, DUS, OP, OS, IV, CT, IPV, LPC, YLPC, EPC, YEPC, RUS, RTS, IANM, RS, CPUC, OL, TCS, MF, SIP, NS, CDS, WIRE])
             elif dataType == 'minutely_asset':
                 DL.append([CID, IANM, MF, RS, SIP])
         logger.info('Preprocessing.py - ' + dataType + ' 성공')

@@ -100,6 +100,8 @@ def plug_in(data, classification, itemType) :
 
             elif classification == 'online_asset' :
                 DL.append(len(data.computer_id))
+            elif classification == 'wire':
+                DL.append(data.wire[c])
 
 
 
@@ -168,6 +170,10 @@ def plug_in(data, classification, itemType) :
         elif classification == 'online_asset':
             statistics_unique = ['online_asset']
             item = ['online_asset']
+        elif classification == 'wire':
+            statistics_unique = classification + '_' + DFGS.WIRE
+            item = DFGS.WIRE
+
 
         item_count = DFG.counts
 
